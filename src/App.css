@@ -1,3 +1,17 @@
+* {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
-  padding-inline: 300px;
+  /* padding-inline: 300px; */
+  width: 70vw;
+  margin: auto;
 }
