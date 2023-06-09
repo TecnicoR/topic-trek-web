@@ -195,7 +195,12 @@ export const PostsFeed = () => {
   ]);
   return (
     <>
-      <Paper>
+      <Paper
+        sx={{
+          marginTop: "5px",
+          padding: "5px 15px",
+        }}
+      >
         <Typography
           variant="h5"
           style={{
@@ -210,6 +215,11 @@ export const PostsFeed = () => {
         <div
           style={{
             maxWidth: "100%",
+            display: "flex",
+            alignItems:"center",
+            flexWrap: "wrap",
+            justifyContent :"space-between",
+            gap: "1px"
           }}
         >
           {posts?.map((v, k) => {

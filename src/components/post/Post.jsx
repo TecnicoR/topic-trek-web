@@ -6,13 +6,16 @@ export const Post = ({ post }) => {
     <>
       <Stack
         sx={{
-          width: "400px",
-          height: "600px",
+          width: "500px",
+          height: "400px",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+          alignItems: "center",
+          justifyContent:"space-around"
         }}
       >
         <div
           style={{
-            height: "60%",
+            height: "50%",
             width: "90%",
           }}
         >
@@ -28,8 +31,9 @@ export const Post = ({ post }) => {
           />
         </div>
         <Typography
-          variant="h6"
+          variant="h5"
           sx={{
+            padding : "5px",
             textTransform: "capitalize",
             fontWeight: "bold",
             marginBottom: "10px",

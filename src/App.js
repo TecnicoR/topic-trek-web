@@ -15,6 +15,7 @@ import { Profile } from "./pages/Profile";
 import { NotFound } from "./pages/NotFound";
 
 function App() {
+  document.title = "Topic Trek - passport to infinite knowledge"
   return (
     <UserProvider>
       <div className="App">
