@@ -15,7 +15,7 @@ import GradeIcon from "@mui/icons-material/Grade";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 
-const menuIconStyle = { color: "white", fontSize: "30px" };
+const menuIconStyle = { color: "white", fontSize: "30px", "&:hover": { transform : 'scale(110%)', color : "#f5f5f5" }};
 
 export const Navbar = () => {
   // State used for opening my profile sub menu once clicked on profile icon

@@ -1,4 +1,4 @@
-import { Container, Divider, Stack, Typography } from "@mui/material";
+import { Container, Divider, IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import BookIcon from "@mui/icons-material/Book";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -6,6 +6,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
+import "./footer.scss";
 
 export const Footer = () => {
   return (
@@ -56,14 +57,38 @@ export const Footer = () => {
               justifyContent: "space-evenly",
             }}
           >
-            <FacebookIcon sx={{ color: "black", fontSize: "24px" }} />
-            <TwitterIcon />
-            <GitHubIcon />
-            <LinkedInIcon />
-            <EmailIcon />
+            <IconButton>
+              <FacebookIcon
+                sx={{ color: "inherit", "&:hover": { color: "black" } }}
+              />
+            </IconButton>
+
+            <IconButton>
+              <TwitterIcon
+                sx={{ color: "inherit", "&:hover": { color: "black" } }}
+              />
+            </IconButton>
+
+            <IconButton>
+              <GitHubIcon
+                sx={{ color: "inherit", "&:hover": { color: "black" } }}
+              />
+            </IconButton>
+
+            <IconButton>
+              <LinkedInIcon
+                sx={{ color: "inherit", "&:hover": { color: "black" } }}
+              />
+            </IconButton>
+
+            <IconButton>
+              <EmailIcon
+                sx={{ color: "inherit", "&:hover": { color: "black" } }}
+              />
+            </IconButton>
           </Stack>
         </Stack>
-        <Divider sx={{ width: "100%" }} />
+        <Divider sx={{ width: '100%', backgroundColor: 'black', height: '2px' }} />
         <Stack
           sx={{
             alignItems: "center",
