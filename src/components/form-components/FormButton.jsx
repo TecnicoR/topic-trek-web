@@ -10,7 +10,7 @@ export const FormButton = ({ children, ...rest }) => {
 
   const defaultConfiguration = {
     onClick: handleSubmit,
-    ...rest
+    ...rest,
   };
   return <Button {...defaultConfiguration}>{children}</Button>;
 };

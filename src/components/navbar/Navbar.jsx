@@ -94,7 +94,7 @@ export const Navbar = () => {
           }}
         >
           <Tooltip title="Home">
-            <IconButton onClick={()=> navigate("/")}>
+            <IconButton onClick={() => navigate("/")}>
               <HomeIcon sx={menuIconStyle} />
             </IconButton>
           </Tooltip>
