@@ -5,12 +5,10 @@ import * as Yup from "yup";
 import LoginIcon from "@mui/icons-material/Login";
 import { TextInput } from "../components/form-components/TextInput";
 import { FormButton } from "../components/form-components/FormButton";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 export const Signup = () => {
-  const navigate = useNavigate();
-
   const initialValues = {
     name: "",
     email: "",

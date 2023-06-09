@@ -1,4 +1,4 @@
-import { Container, Divider, IconButton, Stack, Typography } from "@mui/material";
+import { Divider, IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import BookIcon from "@mui/icons-material/Book";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -40,7 +40,6 @@ export const Footer = () => {
                 letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
-                display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
               }}
@@ -88,7 +87,9 @@ export const Footer = () => {
             </IconButton>
           </Stack>
         </Stack>
-        <Divider sx={{ width: '100%', backgroundColor: 'black', height: '2px' }} />
+        <Divider
+          sx={{ width: "100%", backgroundColor: "black", height: "2px" }}
+        />
         <Stack
           sx={{
             alignItems: "center",

@@ -2,7 +2,6 @@ import {
   AppBar,
   Box,
   Button,
-  ButtonGroup,
   IconButton,
   Menu,
   MenuItem,
@@ -77,7 +76,6 @@ export const Navbar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
-              display: "flex",
               flexDirection: "row",
               alignItems: "center",
             }}
