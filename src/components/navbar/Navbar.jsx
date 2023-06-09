@@ -49,6 +49,7 @@ export const Navbar = () => {
     <AppBar
       position="sticky"
       sx={{
+        marginBottom: "6px",
         height: "60px",
         display: "flex",
         flexDirection: "row",

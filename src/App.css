@@ -13,14 +13,14 @@
 .App {
   /* padding-inline: 300px; */
   width: 100vw;
-  display : flex;
+  display: flex;
 }
-.App .left-side{
+.App .left-side {
   width: 20%;
 }
-.App .right-side{
+.App .right-side {
   width: 20%;
 }
-.App .center-main{
+.App .center-main {
   width: 80%;
 }

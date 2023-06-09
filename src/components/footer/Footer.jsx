@@ -13,6 +13,7 @@ export const Footer = () => {
     <>
       <Stack
         sx={{
+          marginTop: "6px",
           alignItems: "center",
           flexDirection: "column",
           justifyContent: "space-around",
