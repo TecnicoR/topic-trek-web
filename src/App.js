@@ -6,6 +6,8 @@ import "@coreui/coreui/dist/css/coreui.min.css";
 import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/footer/Footer";
 import { UserProvider } from "./context/UserContext";
+import { Login } from "./pages/Login";
+import { Signup } from "./pages/Signup";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
             <Navbar />
             <Routes>
               <Route index element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/sign-up" element={<Signup />} />
             </Routes>
             <Footer />
           </BrowserRouter>

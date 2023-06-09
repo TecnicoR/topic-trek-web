@@ -18,6 +18,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import { UserContext } from "../../context/UserContext";
 import LoginIcon from "@mui/icons-material/Login";
+import { useNavigate } from "react-router-dom";
 
 const menuIconStyle = {
   color: "white",
@@ -32,11 +33,17 @@ export const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = anchorEl;
 
+  const navigate = useNavigate();
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLoginButtonClick = () => {
+    navigate("/login");
   };
 
   return (
@@ -87,7 +94,7 @@ export const Navbar = () => {
           }}
         >
           <Tooltip title="Home">
-            <IconButton>
+            <IconButton onClick={()=> navigate("/")}>
               <HomeIcon sx={menuIconStyle} />
             </IconButton>
           </Tooltip>
@@ -134,6 +141,7 @@ export const Navbar = () => {
                 }}
                 variant="contained"
                 endIcon={<LoginIcon />}
+                onClick={handleLoginButtonClick}
               >
                 Login
               </Button>
