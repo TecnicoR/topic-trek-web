@@ -1,7 +1,8 @@
 import React from "react";
 import { Carousel } from "../components/carousel/Carousel";
-import { Stack } from "@mui/material";
+import { Divider, Stack } from "@mui/material";
 import { TopCategories } from "../components/top-categories/TopCategories";
+import { PostsFeed } from "../components/post/PostsFeed";
 
 export const Home = () => {
   return (
@@ -10,11 +11,13 @@ export const Home = () => {
         sx={{
           width: "100%",
           boxSizing: "border-box",
-          overflow : "hidden"
+          overflow: "hidden",
         }}
       >
         <Carousel />
         <TopCategories />
+
+        <PostsFeed />
       </Stack>
     </>
   );
