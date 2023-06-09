@@ -195,10 +195,9 @@ export const TopCategories = () => {
   return (
     <Stack
       sx={{
-        width: "1107px",
+        maxWidth: "100%",
         boxSizing: "border-box",
         padding: "5px 15px",
-        boxSizing: "border-box",
         marginTop: "6px",
         // width: "100%",
         borderRadius: "6px",
@@ -215,7 +214,7 @@ export const TopCategories = () => {
           //   borderBottom: "2px solid #000",
         }}
       >
-        Trending Categories <TrendingUpIcon fontSize="large" />
+        Top 10 Trending Categories <TrendingUpIcon fontSize="large" />
       </Typography>
       <div
         style={{
@@ -225,26 +224,26 @@ export const TopCategories = () => {
           maxWidth: "100%",
         }}
       >
-        <IconButton onClick={handleScrollLeft}>
+        {/* <IconButton onClick={handleScrollLeft}>
           <ChevronLeft />
-        </IconButton>
+        </IconButton> */}
         <div
           ref={scrollContainerRef}
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
             gap: "5px",
-            overflowX: "auto",
+            // overflowX: "auto",
             width: "100%",
           }}
         >
-          {categories.map((v, k) => {
+          {categories.slice(0, 10).map((v, k) => {
             return <Category key={k} category={v} />;
           })}
         </div>
-        <IconButton onClick={handleScrollRight}>
+        {/* <IconButton onClick={handleScrollRight}>
           <ChevronRight />
-        </IconButton>
+        </IconButton> */}
       </div>
     </Stack>
   );

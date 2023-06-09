@@ -1,22 +1,29 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
+import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 
 export const Post = ({ post }) => {
   return (
     <>
       <Stack
         sx={{
-          width: "500px",
+          width: "520px",
           height: "400px",
           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-          alignItems: "center",
-          justifyContent:"space-around"
+          alignItems: "left",
+          justifyContent: "space-around",
+          backgroundColor: "#f8f8f8",
+          "&:hover": {
+            boxShadow: "rgba(0, 0, 0, 0.3) 0px 6px 12px",
+            backgroundColor: "#f0f0f0",
+          },
         }}
       >
         <div
           style={{
-            height: "50%",
-            width: "90%",
+            marginInline: "auto",
+            height: "60%",
+            width: "95%",
           }}
         >
           <img
@@ -33,7 +40,9 @@ export const Post = ({ post }) => {
         <Typography
           variant="h5"
           sx={{
-            padding : "5px",
+            marginTop: "-20px",
+            height: "5%",
+            padding: "5px",
             textTransform: "capitalize",
             fontWeight: "bold",
             marginBottom: "10px",
@@ -41,6 +50,54 @@ export const Post = ({ post }) => {
         >
           {post?.title}
         </Typography>
+        <Typography
+          sx={{
+            height: "5%",
+            marginTop: "-12px",
+            // display: "-webkit-box",
+            // WebkitLineClamp: 2,
+            // WebkitBoxOrient: "vertical",
+            whiteSpace: "nowrap" /* Prevent the text from wrapping */,
+            overflow: "hidden" /* Hide any overflow */,
+            textOverflow: "ellipsis",
+            paddingInline: "5px",
+          }}
+          variant="body"
+        >
+          {post?.content}
+        </Typography>
+        <Stack
+          sx={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingInline: "5px",
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: "Arial, sans-serif",
+              display: "flex",
+              alignItems: "center",
+              fontStyle: "italic",
+            }}
+            variant="h6"
+          >
+            <PermIdentityIcon />
+            {post?.userName}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Arial, sans-serif",
+              fontSize: "14px",
+              color: "#888888",
+              fontStyle: "italic",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {post?.publicationDate}
+          </Typography>
+        </Stack>
       </Stack>
     </>
   );
