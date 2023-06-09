@@ -5,7 +5,195 @@ import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import { Warning } from "@mui/icons-material";
 
 export const PostsFeed = () => {
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+    {
+      id: "1",
+      title: "Lorem Uashaasasasasasasasas",
+      content:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat neque ducimus iusto? Inventore molestiae perferendis facere suscipit reiciendis nihil, tempore asperiores recusandae repellendus aliquam quas placeat animi, veniam esse, beatae aperiam voluptatum minima. Quis?",
+      publicationDate: "6th june",
+      userName: "Rabinarayan Patra",
+      categories: ["Sports", "Entertainment"],
+      image:
+        "https://cdn.cfr.org/sites/default/files/styles/slide_3_2/public/image/2021/12/RTXJK7FE%20%281%29.JPG.webp",
+    },
+  ]);
 
   if (!posts || posts.length === 0) {
     return (

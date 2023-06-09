@@ -90,6 +90,33 @@ export const Carousel = () => {
               </p>
             </CCarouselCaption>
           </CCarouselItem>
+          <CCarouselItem>
+            <CImage
+              style={imageStyle}
+              className="d-block w-100"
+              src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+              alt="slide 4"
+            />
+            <CCarouselCaption className="d-none d-md-block">
+              <h5>Discover new perspectives in writing</h5>
+              <p>Open your mind to new ideas and expand your creativity.</p>
+            </CCarouselCaption>
+          </CCarouselItem>
+          <CCarouselItem>
+            <CImage
+              style={imageStyle}
+              className="d-block w-100"
+              src="https://images.unsplash.com/photo-1580618432485-1e08c5039909?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=364&q=80"
+              alt="slide 5"
+            />
+            <CCarouselCaption className="d-none d-md-block">
+              <h5>Connect with like-minded individuals</h5>
+              <p>
+                Join a vibrant community of writers and enthusiasts to share and
+                collaborate.
+              </p>
+            </CCarouselCaption>
+          </CCarouselItem>
         </CCarousel>
       </Paper>
     </>

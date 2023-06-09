@@ -13,9 +13,11 @@ import { AnimatePresence } from "framer-motion";
 import { ProtectedRoute } from "./components/security/ProtectedRoute";
 import { Profile } from "./pages/Profile";
 import { NotFound } from "./pages/NotFound";
+import { AddPost } from "./pages/AddPost";
+import 'react-quill/dist/quill.snow.css';
 
 function App() {
-  document.title = "Topic Trek - passport to infinite knowledge"
+  document.title = "Topic Trek - passport to infinite knowledge";
   return (
     <UserProvider>
       <div className="App">
@@ -55,6 +57,16 @@ function App() {
                     <ProtectedRoute>
                       <PageAnimation>
                         <Profile />
+                      </PageAnimation>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/add-post"
+                  element={
+                    <ProtectedRoute>
+                      <PageAnimation>
+                        <AddPost />
                       </PageAnimation>
                     </ProtectedRoute>
                   }

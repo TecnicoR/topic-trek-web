@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   IconButton,
@@ -37,6 +38,7 @@ export const Navbar = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -44,6 +46,11 @@ export const Navbar = () => {
   const handleLoginButtonClick = () => {
     navigate("/login");
   };
+
+  // const handleImageError = (event) => {
+  //   event.target.style.backgroundColor = "#e0e0e0"; // Change the background color
+  //   event.target.style.color = "blue"; // Change the text color
+  // };
 
   return (
     <AppBar
@@ -105,7 +112,7 @@ export const Navbar = () => {
                 </IconButton>
               </Tooltip>
               <Tooltip title="Add new post">
-                <IconButton>
+                <IconButton onClick={() => navigate("/add-post")}>
                   <PostAddIcon sx={menuIconStyle} />
                 </IconButton>
               </Tooltip>
@@ -116,7 +123,19 @@ export const Navbar = () => {
                   aria-expanded={open ? "true" : undefined}
                   onClick={handleClick}
                 >
-                  <AccountCircleIcon sx={menuIconStyle} />
+                  <Avatar
+                    // onError={handleImageError}
+                    src="j"
+                    alt={user?.name}
+                    sx={{
+                      width: 30,
+                      height: 30,
+                      backgroundColor: "#ffffff", // Default background color
+                      color: "#333333", // Default text color
+                      fontSize: "18px",
+                    }}
+                  />
+                  {/* <AccountCircleIcon sx={menuIconStyle} /> */}
                 </IconButton>
               </Tooltip>
             </>

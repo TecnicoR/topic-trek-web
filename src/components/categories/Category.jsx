@@ -14,18 +14,26 @@ export const Category = ({ category }) => {
         cursor: "pointer",
       }}
     >
-      <img
-        src={category?.image}
+      <div
         style={{
-          border: "1px solid black",
-          height: "70%",
           width: "70%",
-          objectFit: "cover",
-          borderRadius: "50%",
+          height: "70%",
+          overflow: "hidden",
         }}
-        alt="Logo"
-      />
-      <Typography textAlign={"center"} variant="h6" component={"p"}>
+      >
+        <img
+          src={category?.image}
+          style={{
+            width: "100%",
+            borderRadius: "10%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center center",
+          }}
+          alt="Logo"
+        />
+      </div>
+      <Typography textAlign="center" variant="h6" component="p">
         {category?.name}
       </Typography>
     </div>
