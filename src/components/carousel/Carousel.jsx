@@ -6,8 +6,10 @@ import {
 } from "@coreui/react";
 import { Button } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Carousel = () => {
+  const navigate = useNavigate();
   const imageStyle = {
     objectFit: "cover", // Resize the image to cover the container
     height: "300px", // Set your desired height here
@@ -15,7 +17,15 @@ export const Carousel = () => {
   };
   return (
     <>
-      <CCarousel controls indicators interval={3000} dark touch pause={'hover'} wrap>
+      <CCarousel
+        controls
+        indicators
+        interval={3000}
+        dark
+        touch
+        pause={"hover"}
+        wrap
+      >
         <CCarouselItem>
           <CImage
             style={imageStyle}
@@ -27,7 +37,20 @@ export const Carousel = () => {
           />
           <CCarouselCaption className="d-none d-md-block">
             <h5>Write your ideas here.</h5>
-            <p>Let people know about your thoughts, <Button variant="contained">Signup For Free</Button></p>
+            <p>
+              Let people know about your thoughts,{" "}
+              <Button
+                sx={{
+                  "&:active": {
+                    transform: "scale(95%)",
+                  },
+                }}
+                variant="contained"
+                onClick={() => navigate("/sign-up")}
+              >
+                Signup For Free
+              </Button>
+            </p>
           </CCarouselCaption>
         </CCarouselItem>
         <CCarouselItem>
@@ -40,8 +63,13 @@ export const Carousel = () => {
             alt="slide 2"
           />
           <CCarouselCaption className="d-none d-md-block">
-            <h5>Explore the world of inspiring people's ideas here in <strong>Topic Trek</strong> </h5>
-            <p>“Don’t let yesterday take up too much of today.” — Will Rogers</p>
+            <h5>
+              Explore the world of inspiring people's ideas here in{" "}
+              <strong>Topic Trek</strong>{" "}
+            </h5>
+            <p>
+              “Don’t let yesterday take up too much of today.” — Will Rogers
+            </p>
           </CCarouselCaption>
         </CCarouselItem>
         <CCarouselItem>
@@ -55,7 +83,10 @@ export const Carousel = () => {
           />
           <CCarouselCaption className="d-none d-md-block">
             <h5>Be you! Don't stop yourself from being creative</h5>
-            <p>"Creativity is seeing what others see and thinking what no one else ever thought." - Albert Einstein</p>
+            <p>
+              "Creativity is seeing what others see and thinking what no one
+              else ever thought." - Albert Einstein
+            </p>
           </CCarouselCaption>
         </CCarouselItem>
       </CCarousel>

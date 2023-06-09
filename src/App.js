@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-
+import React from "react";
 import { Home } from "./pages/Home";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import { Navbar } from "./components/navbar/Navbar";
@@ -10,6 +10,9 @@ import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { PageAnimation } from "./components/animation/PageAnimation";
 import { AnimatePresence } from "framer-motion";
+import { ProtectedRoute } from "./components/security/ProtectedRoute";
+import { Profile } from "./pages/Profile";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   return (
@@ -45,9 +48,26 @@ function App() {
                     </PageAnimation>
                   }
                 />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <PageAnimation>
+                        <Profile />
+                      </PageAnimation>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="*"
+                  element={
+                    <PageAnimation>
+                      <NotFound />
+                    </PageAnimation>
+                  }
+                />
               </Routes>
             </AnimatePresence>
-
             <Footer />
           </BrowserRouter>
         </div>
