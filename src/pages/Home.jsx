@@ -12,9 +12,9 @@ export const Home = () => {
 
   return (
     <>
-      <Container>
+      {/* <Container> */}
         <Carousel/>
-      </Container>
+      {/* </Container> */}
     </>
   );
 };
