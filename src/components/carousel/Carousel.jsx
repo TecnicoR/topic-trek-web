@@ -5,10 +5,12 @@ import {
   CImage,
 } from "@coreui/react";
 import { Button, Paper } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 export const Carousel = () => {
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const imageStyle = {
     objectFit: "cover", // Resize the image to cover the container
@@ -39,18 +41,20 @@ export const Carousel = () => {
             <CCarouselCaption className="d-none d-md-block">
               <h5>Write your ideas here.</h5>
               <p>
-                Let people know about your thoughts,{" "}
-                <Button
-                  sx={{
-                    "&:active": {
-                      transform: "scale(95%)",
-                    },
-                  }}
-                  variant="contained"
-                  onClick={() => navigate("/sign-up")}
-                >
-                  Signup For Free
-                </Button>
+                Let people know about your thoughts{" "}
+                {user == null && (
+                  <Button
+                    sx={{
+                      "&:active": {
+                        transform: "scale(95%)",
+                      },
+                    }}
+                    variant="contained"
+                    onClick={() => navigate("/sign-up")}
+                  >
+                    Signup For Free
+                  </Button>
+                )}
               </p>
             </CCarouselCaption>
           </CCarouselItem>

@@ -9,6 +9,8 @@ import {
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import { FileUpload } from "../components/form-components/FileUpload";
+import { PostAddOutlined } from "@mui/icons-material";
+import "./styles/add-post.scss";
 
 export const AddPost = () => {
   const [value, setValue] = useState("");
@@ -39,7 +41,15 @@ export const AddPost = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        minHeight: "110vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        gap: "6px",
+      }}
+    >
       <Typography
         variant="h4"
         sx={{
@@ -51,31 +61,29 @@ export const AddPost = () => {
         Post a new Blog
       </Typography>
       <TextField
-        sx={{ fontSize: "90px" }}
         fullWidth
         label="Title"
-        variant="standard"
+        variant="outlined"
         type="text"
         name="title"
         value={post?.title}
-        InputProps={{
-          style: {
-            fontSize: "26px",
-            fontWeight: "bold",
+        // InputProps={{
+        //   style: {
+        //     fontSize: "26px",
+        //     fontWeight: "bold",
+        //   },
+        // }}
+        // InputLabelProps={{
+        //   style: {
+        //     fontSize: "22px",
+        //   },
+        // }}
+        sx={{
+          fontSize: "20px", // Adjust the font size here
+          "& .MuiInputLabel-root": {
+            fontSize: "18px", // Adjust the label font size here
           },
         }}
-        InputLabelProps={{
-          style: {
-            fontSize: "22px",
-          },
-        }}
-      />
-      <ReactQuill
-        placeholder="Write your blog post here..."
-        theme="snow"
-        value={value}
-        onChange={setValue}
-        modules={modules}
       />
 
       <Box
@@ -85,8 +93,9 @@ export const AddPost = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
+          justifyContent: "space-between",
           gap: "30px",
-          paddingInline: "20px",
+          // paddingInline: "20px",
           boxSizing: "border-box",
         }}
       >
@@ -102,7 +111,7 @@ export const AddPost = () => {
           renderInput={(params) => (
             <TextField
               {...params}
-              variant="standard"
+              variant="outlined"
               label="Select Categories"
               placeholder="Search category"
               sx={{
@@ -116,9 +125,37 @@ export const AddPost = () => {
         />
         <FileUpload />
       </Box>
+      <Box
+        sx={{
+          overflowY: "auto",
+          marginBottom: "10px",
+          // border: "1px solid black",
+          boxShadow:
+            "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px",
+        }}
+      >
+        <Typography
+          variant="h5"
+          sx={{ margin: "5px 12px", marginInline: "6px", color: "#666666" }}
+        >
+          Content
+        </Typography>
+        <ReactQuill
+          placeholder="Write your blog post here..."
+          theme="snow"
+          value={value}
+          onChange={setValue}
+          modules={modules}
+          style={{
+            height: "600px",
+          }}
+        />
+      </Box>
       <Button
+        endIcon={<PostAddOutlined />}
         sx={{
           marginTop: "10px",
+          fontSize: "18px",
         }}
         fullWidth
         variant="contained"

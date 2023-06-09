@@ -27,7 +27,7 @@ const menuIconStyle = {
 };
 
 export const Navbar = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   // State used for opening my profile sub menu once clicked on profile icon
   const [anchorEl, setAnchorEl] = useState(null);
@@ -44,13 +44,20 @@ export const Navbar = () => {
   };
 
   const handleLoginButtonClick = () => {
-    navigate("/login");
+    // navigate("/login");
+    setUser({
+      id: "1",
+      name: "Rabinarayan Patra",
+      image:
+        "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
+    });
   };
 
-  // const handleImageError = (event) => {
-  //   event.target.style.backgroundColor = "#e0e0e0"; // Change the background color
-  //   event.target.style.color = "blue"; // Change the text color
-  // };
+  const handleLogout = () => {
+    localStorage.clear();
+    setUser(null);
+    navigate("/");
+  };
 
   return (
     <AppBar
@@ -183,7 +190,7 @@ export const Navbar = () => {
             }}
           >
             <MenuItem>Profile</MenuItem>
-            <MenuItem>Logout</MenuItem>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </Box>
       </Stack>
