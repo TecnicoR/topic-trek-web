@@ -5,7 +5,7 @@ import { DateTime } from "luxon";
 import { useNavigate } from "react-router-dom";
 import { HtmlParser } from "../html-parser/HtmlParser";
 
-export const Post = ({ post }) => {
+export const SingleBlog = ({ post }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/blog/${post?.id}`);

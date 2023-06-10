@@ -2,7 +2,7 @@ import React from "react";
 import { Carousel } from "../components/carousel/Carousel";
 import { Divider, Stack } from "@mui/material";
 import { TopCategories } from "../components/top-categories/TopCategories";
-import { PostsFeed } from "../components/post/PostsFeed";
+import { BlogsFeed } from "../components/post/BlogsFeed";
 
 export const Home = () => {
   return (
@@ -17,7 +17,7 @@ export const Home = () => {
         <Carousel />
         <TopCategories />
 
-        <PostsFeed />
+        <BlogsFeed />
       </Stack>
     </>
   );

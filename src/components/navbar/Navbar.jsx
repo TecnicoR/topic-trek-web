@@ -114,7 +114,7 @@ export const Navbar = () => {
           {user != null ? (
             <>
               <Tooltip title="Favorites">
-                <IconButton>
+                <IconButton onClick={() => navigate("/favorites")}>
                   <GradeIcon sx={menuIconStyle} />
                 </IconButton>
               </Tooltip>

@@ -16,9 +16,12 @@ export const Category = ({ category }) => {
     >
       <div
         style={{
-          width: "70%",
-          height: "70%",
+          width: "50px",
+          height: "70px",
           overflow: "hidden",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <img

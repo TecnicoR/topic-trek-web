@@ -264,7 +264,7 @@ export const Blog = () => {
               src={post?.image}
               alt=""
               style={{
-                border: "2px solid black",
+                border: "1px solid black",
                 borderRadius: "10px",
                 height: 500,
                 marginBottom: 16,
@@ -292,11 +292,13 @@ export const Blog = () => {
                       <ListItem
                         disablePadding
                         sx={{
+                          cursor: "pointer",
                           display: "flex",
                           flexDirection: "row",
                           alignItems: "center",
                           py: 1,
                         }}
+                        onClick={() => navigate(`/blog/${v?.id}`)}
                       >
                         <img
                           src={v?.image}

@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { Post } from "./Post";
-import { Paper, Typography } from "@mui/material";
-import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
-import { Warning } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  Container,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/material";
+import { Favorite, RemoveCircle } from "@mui/icons-material";
+import { DateTime } from "luxon";
 
-export const PostsFeed = () => {
-  const [posts, setPosts] = useState([
+export const Favorites = () => {
+  const [favoriteBlogs, setFavoriteBlogs] = useState([
     {
       id: 1,
       title: "The Importance of Exercise",
@@ -207,58 +213,74 @@ export const PostsFeed = () => {
       publicationDate: "2023-05-23T10:25:00",
     },
   ]);
-
-  if (!posts || posts.length === 0) {
-    return (
-      <div
-        style={{
-          height: "100px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Warning style={{ marginRight: "8px" }} />
-        <Typography variant="body1" color="textSecondary">
-          No posts available
-        </Typography>
-      </div>
-    );
-  }
+  const onRemoveFavorite = (id) => {
+    console.log("Blog to remove ", id);
+  };
   return (
-    <>
-      <Paper
-        sx={{
-          marginTop: "5px",
-          padding: "5px 15px",
-        }}
-      >
-        <Typography
-          variant="h5"
-          style={{
-            textTransform: "capitalize",
-            fontWeight: "bold",
-            marginBottom: "10px",
-            //   borderBottom: "2px solid #000",
-          }}
-        >
-          Top Blogs for Today <DynamicFeedIcon fontSize="large" />
+    <Container maxWidth="md">
+      <Typography variant="h4" align="center" sx={{ mt: 4, mb: 2 }}>
+        Favorites
+      </Typography>
+      {!favoriteBlogs || favoriteBlogs.length === 0 ? (
+        <Typography variant="body1" align="center">
+          You haven't added any blogs to your favorites yet.
         </Typography>
-        <div
-          style={{
-            maxWidth: "100%",
-            display: "flex",
-            alignItems: "center",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            gap: "10px",
-          }}
-        >
-          {posts?.map((v, k) => {
-            return <Post key={k} post={v} />;
-          })}
-        </div>
-      </Paper>
-    </>
+      ) : (
+        <Grid container spacing={2}>
+          {favoriteBlogs.map((blog) => (
+            <Grid item key={blog.id} xs={12} sm={6} md={4}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  height: "100%",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  p: 2,
+                }}
+              >
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  style={{ width: "100%", height: "200px", objectFit: "cover" }}
+                />
+                <Typography variant="h6" sx={{ mt: 2 }}>
+                  {blog.title}
+                </Typography>
+
+                <Typography variant="body2">
+                  Author:{" "}
+                  <span style={{ fontWeight: "bold" }}>{blog.userName} </span>|
+                  Published:{" "}
+                  <span style={{ fontStyle: "italic", marginTop: 1 }}>
+                    {DateTime.fromISO(blog?.publicationDate).toLocaleString(
+                      DateTime.DATETIME_MED
+                    )}
+                  </span>
+                </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mt: 2,
+                  }}
+                >
+                  <Button
+                    endIcon={<RemoveCircle />}
+                    variant="contained"
+                    disableElevation
+                    onClick={() => onRemoveFavorite(blog.id)}
+                  >
+                    Remove
+                  </Button>
+                </Box>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      )}
+    </Container>
   );
 };
