@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -6,7 +6,6 @@ import { Typography } from "@mui/material";
 
 export const FileUpload = ({ post, setPost }) => {
   const fileInputRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
