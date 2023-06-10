@@ -2,30 +2,52 @@ import {
   Autocomplete,
   Box,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Divider,
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import { FileUpload } from "../components/form-components/FileUpload";
 import { PostAddOutlined } from "@mui/icons-material";
 import "./styles/add-post.scss";
 
 export const AddPost = () => {
-  const [value, setValue] = useState("");
   const [post, setPost] = useState({});
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  const handleOptionChange = (event, value) => {
-    setSelectedOptions(value);
+  const handleChange = (event) => {
+    setPost({ ...post, [event.target.name]: event.target.value });
   };
+  const handleOptionChange = (event, value) => {
+    setPost({ ...post, categories: value });
+  };
+
+  const handleSubmit = () => {
+    setDialogOpen(true);
+  };
+
+  const handleConfirm = () => {
+    console.log("Post", post);
+    setDialogOpen(false);
+  };
+
+  const handleCancel = () => {
+    setDialogOpen(false);
+  };
+  useEffect(() => {
+    console.log("Post ", post);
+  }, [post]);
 
   const options = [
     { value: "option1", label: "Option 1" },
     { value: "option2", label: "Option 2" },
     { value: "option3", label: "Option 3" },
-    // Add more options as needed
   ];
 
   const modules = {
@@ -66,18 +88,8 @@ export const AddPost = () => {
         variant="outlined"
         type="text"
         name="title"
+        onChange={handleChange}
         value={post?.title}
-        // InputProps={{
-        //   style: {
-        //     fontSize: "26px",
-        //     fontWeight: "bold",
-        //   },
-        // }}
-        // InputLabelProps={{
-        //   style: {
-        //     fontSize: "22px",
-        //   },
-        // }}
         sx={{
           fontSize: "20px", // Adjust the font size here
           "& .MuiInputLabel-root": {
@@ -106,24 +118,27 @@ export const AddPost = () => {
           multiple
           options={options}
           getOptionLabel={(option) => option.label}
-          value={selectedOptions}
+          value={post?.categories}
           onChange={handleOptionChange}
+          isOptionEqualToValue={(option, value) => {
+            return option.value === value.value && option.label === value.label;
+          }}
           renderInput={(params) => (
             <TextField
               {...params}
               variant="outlined"
-              label="Select Categories"
+              label="Categories"
               placeholder="Search category"
               sx={{
                 fontSize: "20px", // Adjust the font size here
                 "& .MuiInputLabel-root": {
-                  fontSize: "18px", // Adjust the label font size here
+                  fontSize: "17px", // Adjust the label font size here
                 },
               }}
             />
           )}
         />
-        <FileUpload />
+        <FileUpload post={post} setPost={setPost} />
       </Box>
       <Box
         sx={{
@@ -143,8 +158,9 @@ export const AddPost = () => {
         <ReactQuill
           placeholder="Write your blog post here..."
           theme="snow"
-          value={value}
-          onChange={setValue}
+          name="content"
+          value={post?.content}
+          onChange={(value) => setPost({ ...post, content: value })}
           modules={modules}
           style={{
             height: "600px",
@@ -159,9 +175,22 @@ export const AddPost = () => {
         }}
         fullWidth
         variant="contained"
+        onClick={handleSubmit}
       >
         Post blog
       </Button>
+      <Dialog open={dialogOpen} onClose={handleCancel}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to post this blog?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancel}>Cancel</Button>
+          <Button onClick={handleConfirm}>Confirm</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

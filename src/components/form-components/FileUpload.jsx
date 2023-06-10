@@ -4,7 +4,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Typography } from "@mui/material";
 
-export const FileUpload = () => {
+export const FileUpload = ({ post, setPost }) => {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -14,12 +14,14 @@ export const FileUpload = () => {
 
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
+    setPost({ ...post, image: file });
     // Do something with the selected file
   };
 
   const handleRemoveImage = () => {
-    setSelectedFile(null);
+    const temp = { ...post };
+    delete temp["image"];
+    setPost(temp);
   };
 
   return (
@@ -37,9 +39,9 @@ export const FileUpload = () => {
         startIcon={<CloudUploadIcon />}
         onClick={handleButtonClick}
       >
-        {selectedFile ? selectedFile.name : "Upload Image"}
+        {post?.image ? post?.image?.name : "Upload Image"}
       </Button>
-      {selectedFile && (
+      {post?.image && (
         <Button
           variant="outlined"
           startIcon={<CancelIcon />}

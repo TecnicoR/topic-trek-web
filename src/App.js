@@ -14,7 +14,7 @@ import { ProtectedRoute } from "./components/security/ProtectedRoute";
 import { Profile } from "./pages/Profile";
 import { NotFound } from "./pages/NotFound";
 import { AddPost } from "./pages/AddPost";
-import 'react-quill/dist/quill.snow.css';
+import "react-quill/dist/quill.snow.css";
 
 function App() {
   document.title = "Topic Trek - passport to infinite knowledge";
