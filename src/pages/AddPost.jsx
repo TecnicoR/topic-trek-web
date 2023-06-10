@@ -7,7 +7,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Divider,
   TextField,
   Typography,
 } from "@mui/material";
@@ -40,9 +39,6 @@ export const AddPost = () => {
   const handleCancel = () => {
     setDialogOpen(false);
   };
-  useEffect(() => {
-    console.log("Post ", post);
-  }, [post]);
 
   const options = [
     { value: "option1", label: "Option 1" },
@@ -58,7 +54,6 @@ export const AddPost = () => {
       [{ list: "ordered" }, { list: "bullet" }], // List options
       [{ align: [] }],
       ["clean"], // Remove formatting option
-      ["undo", "redo"],
     ],
   };
 
