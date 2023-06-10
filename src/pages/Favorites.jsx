@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Favorite, RemoveCircle } from "@mui/icons-material";
 import { DateTime } from "luxon";
+import { useNavigate } from "react-router-dom";
 
 export const Favorites = () => {
   const [favoriteBlogs, setFavoriteBlogs] = useState([
@@ -213,8 +214,15 @@ export const Favorites = () => {
       publicationDate: "2023-05-23T10:25:00",
     },
   ]);
+
+  const navigate = useNavigate();
+
   const onRemoveFavorite = (id) => {
     console.log("Blog to remove ", id);
+  };
+
+  const handleClick = (id) => {
+    navigate(`/blog/${id}`);
   };
   return (
     <Container maxWidth="md">
@@ -274,6 +282,13 @@ export const Favorites = () => {
                     onClick={() => onRemoveFavorite(blog.id)}
                   >
                     Remove
+                  </Button>
+                  <Button
+                    onClick={() => handleClick(blog?.id)}
+                    variant="outlined"
+                    color="primary"
+                  >
+                    Read More
                   </Button>
                 </Box>
               </Box>

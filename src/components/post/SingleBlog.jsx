@@ -1,116 +1,70 @@
-import { Stack, Typography } from "@mui/material";
+import { Button, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import { DateTime } from "luxon";
 import { useNavigate } from "react-router-dom";
 import { HtmlParser } from "../html-parser/HtmlParser";
 
-export const SingleBlog = ({ post }) => {
+export const SingleBlog = ({ blog }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/blog/${post?.id}`);
+    navigate(`/blog/${blog?.id}`);
+  };
+  const parseContent = (content) => {
+    content = content.replace(/<\/?[^>]+(>|$)/g, " ");
+    const dummyElement = document.createElement("div");
+    dummyElement.innerHTML = content;
+    return dummyElement.textContent || dummyElement.innerText;
+    // return textContent. // Replace HTML tags with spaces
   };
   return (
     <>
-      <Stack
-        sx={{
-          cursor: "pointer",
-          width: "520px",
-          height: "400px",
-          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-          alignItems: "left",
-          justifyContent: "space-around",
-          backgroundColor: "#f8f8f8",
-          "&:hover": {
-            boxShadow: "rgba(0, 0, 0, 0.3) 0px 6px 12px",
-            backgroundColor: "#f0f0f0",
-          },
-        }}
-        onClick={handleClick}
-      >
+      <Grid item key={blog.id} xs={12} sm={6} md={4}>
         <div
-          style={{
-            marginInline: "auto",
-            height: "60%",
-            width: "95%",
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            width: "100%",
           }}
         >
           <img
+            src={blog.image}
+            alt={blog.title}
             style={{
-              border: "1px solid black",
-              height: "100%",
-              width: "100%",
               objectFit: "cover",
+              height: "200px",
+              width: "100%",
             }}
-            src={post?.image}
-            alt=""
           />
+          <div sx={{ p: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              {blog.title}
+            </Typography>
+            <Typography variant="body2" paragraph>
+              {parseContent(blog.content).slice(0, 100)}...
+            </Typography>
+            <Typography variant="body2">
+              Author:{" "}
+              <span style={{ fontWeight: "bold" }}>{blog.userName} </span>|
+              Published:{" "}
+              <span style={{ fontStyle: "italic", marginTop: 1 }}>
+                {DateTime.fromISO(blog?.publicationDate).toLocaleString(
+                  DateTime.DATETIME_MED
+                )}
+              </span>
+            </Typography>
+            <Button
+              onClick={handleClick}
+              sx={{ marginTop: "6px" }}
+              variant="outlined"
+              color="primary"
+            >
+              Read More
+            </Button>
+          </div>
         </div>
-        <Typography
-          variant="h5"
-          sx={{
-            marginTop: "-20px",
-            height: "5%",
-            padding: "5px",
-            textTransform: "capitalize",
-            fontWeight: "bold",
-            marginBottom: "10px",
-          }}
-        >
-          {post?.title}
-        </Typography>
-        <Typography
-          sx={{
-            height: "10%",
-            marginTop: "-12px",
-            // display: "-webkit-box",
-            // WebkitLineClamp: 2,
-            // WebkitBoxOrient: "vertical",
-            whiteSpace: "nowrap" /* Prevent the text from wrapping */,
-            overflow: "hidden" /* Hide any overflow */,
-            textOverflow: "ellipsis",
-            paddingInline: "5px",
-            fontSize: "14px"
-          }}
-          variant="body"
-        >
-          <HtmlParser htmlContent={post?.content} />
-        </Typography>
-        <Stack
-          sx={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            paddingInline: "5px",
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: "Arial, sans-serif",
-              display: "flex",
-              alignItems: "center",
-              fontStyle: "italic",
-            }}
-            variant="h6"
-          >
-            <PermIdentityIcon />
-            {post?.userName}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: "Arial, sans-serif",
-              fontSize: "14px",
-              color: "#888888",
-              fontStyle: "italic",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            {DateTime.fromISO(post?.publicationDate).toLocaleString(
-              DateTime.DATETIME_MED
-            )}
-          </Typography>
-        </Stack>
-      </Stack>
+      </Grid>
     </>
   );
 };

@@ -59,6 +59,11 @@ export const Navbar = () => {
     navigate("/");
   };
 
+  const handleMyProfileClick = () => {
+    setAnchorEl(false);
+    navigate("profile");
+  };
+
   return (
     <AppBar
       position="sticky"
@@ -189,7 +194,7 @@ export const Navbar = () => {
               "aria-labelledby": "resources-button",
             }}
           >
-            <MenuItem>Profile</MenuItem>
+            <MenuItem onClick={handleMyProfileClick}>Profile</MenuItem>
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </Box>

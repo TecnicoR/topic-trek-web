@@ -1,10 +1,10 @@
-import { Stack, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
 
 export const Category = ({ category }) => {
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         display: "flex",
         flexDirection: "column",
         height: "85px",
@@ -12,33 +12,36 @@ export const Category = ({ category }) => {
         alignItems: "center",
         padding: "6px",
         cursor: "pointer",
+        "&:hover": {
+          backgroundColor: "#f5f5f5",
+        },
       }}
     >
-      <div
-        style={{
+      <Box
+        sx={{
           width: "50px",
           height: "70px",
           overflow: "hidden",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          borderRadius: "10%",
         }}
       >
         <img
           src={category?.image}
+          alt="Logo"
           style={{
             width: "100%",
-            borderRadius: "10%",
             height: "100%",
             objectFit: "cover",
             objectPosition: "center center",
           }}
-          alt="Logo"
         />
-      </div>
+      </Box>
       <Typography textAlign="center" variant="h6" component="p">
         {category?.name}
       </Typography>
-    </div>
+    </Box>
   );
 };

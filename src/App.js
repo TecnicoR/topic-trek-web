@@ -11,12 +11,12 @@ import { Signup } from "./pages/Signup";
 import { PageAnimation } from "./components/animation/PageAnimation";
 import { AnimatePresence } from "framer-motion";
 import { ProtectedRoute } from "./components/security/ProtectedRoute";
-import { Profile } from "./pages/Profile";
 import { NotFound } from "./pages/NotFound";
 import { AddPost } from "./pages/AddPost";
 import "react-quill/dist/quill.snow.css";
 import { Blog } from "./pages/Blog";
 import { Favorites } from "./pages/Favorites";
+import { MyProfile } from "./pages/MyProfile";
 
 function App() {
   document.title = "Topic Trek - passport to infinite knowledge";
@@ -54,16 +54,6 @@ function App() {
                   }
                 />
                 <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <PageAnimation>
-                        <Profile />
-                      </PageAnimation>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
                   path="/add-post"
                   element={
                     <ProtectedRoute>
@@ -89,6 +79,16 @@ function App() {
                     <ProtectedRoute>
                       <PageAnimation>
                         <Favorites />
+                      </PageAnimation>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <PageAnimation>
+                        <MyProfile />
                       </PageAnimation>
                     </ProtectedRoute>
                   }
