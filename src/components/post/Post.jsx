@@ -1,12 +1,19 @@
 import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import { DateTime } from "luxon";
+import { useNavigate } from "react-router-dom";
 
 export const Post = ({ post }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/blog/${post?.id}`);
+  };
   return (
     <>
       <Stack
         sx={{
+          cursor: "pointer",
           width: "520px",
           height: "400px",
           boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
@@ -18,6 +25,7 @@ export const Post = ({ post }) => {
             backgroundColor: "#f0f0f0",
           },
         }}
+        onClick={handleClick}
       >
         <div
           style={{
@@ -95,7 +103,9 @@ export const Post = ({ post }) => {
               alignItems: "center",
             }}
           >
-            {post?.publicationDate}
+            {DateTime.fromISO(post?.publicationDate).toLocaleString(
+              DateTime.DATETIME_MED
+            )}
           </Typography>
         </Stack>
       </Stack>
