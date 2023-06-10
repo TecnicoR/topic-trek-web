@@ -1,8 +1,9 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import React from "react";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import { DateTime } from "luxon";
 import { useNavigate } from "react-router-dom";
+import { HtmlParser } from "../html-parser/HtmlParser";
 
 export const Post = ({ post }) => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ export const Post = ({ post }) => {
         </Typography>
         <Typography
           sx={{
-            height: "5%",
+            height: "10%",
             marginTop: "-12px",
             // display: "-webkit-box",
             // WebkitLineClamp: 2,
@@ -69,10 +70,11 @@ export const Post = ({ post }) => {
             overflow: "hidden" /* Hide any overflow */,
             textOverflow: "ellipsis",
             paddingInline: "5px",
+            fontSize: "14px"
           }}
           variant="body"
         >
-          {post?.content}
+          <HtmlParser htmlContent={post?.content} />
         </Typography>
         <Stack
           sx={{

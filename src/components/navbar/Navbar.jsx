@@ -14,7 +14,6 @@ import React, { useContext, useState } from "react";
 import BookIcon from "@mui/icons-material/Book";
 import HomeIcon from "@mui/icons-material/Home";
 import GradeIcon from "@mui/icons-material/Grade";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import { UserContext } from "../../context/UserContext";
 import LoginIcon from "@mui/icons-material/Login";
@@ -54,6 +53,7 @@ export const Navbar = () => {
   };
 
   const handleLogout = () => {
+    setAnchorEl(false);
     localStorage.clear();
     setUser(null);
     navigate("/");

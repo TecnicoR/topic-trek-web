@@ -11,7 +11,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import { FileUpload } from "../components/form-components/FileUpload";
 import { PostAddOutlined } from "@mui/icons-material";

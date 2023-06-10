@@ -15,6 +15,7 @@ import { Profile } from "./pages/Profile";
 import { NotFound } from "./pages/NotFound";
 import { AddPost } from "./pages/AddPost";
 import "react-quill/dist/quill.snow.css";
+import { Blog } from "./pages/Blog";
 
 function App() {
   document.title = "Topic Trek - passport to infinite knowledge";
@@ -69,6 +70,16 @@ function App() {
                         <AddPost />
                       </PageAnimation>
                     </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/blog/:id"
+                  element={
+                    // <ProtectedRoute>
+                      <PageAnimation>
+                        <Blog />
+                      </PageAnimation>
+                    // </ProtectedRoute>
                   }
                 />
                 <Route
