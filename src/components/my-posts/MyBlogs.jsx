@@ -4,8 +4,13 @@ import {
   Button,
   ButtonGroup,
   Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Grid,
   IconButton,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { RemoveCircle } from "@mui/icons-material";
@@ -218,6 +223,25 @@ export const MyBlogs = () => {
     },
   ]);
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false); // State to track the dialog visibility
+  const [blogIdToDelete, setBlogIdToDelete] = useState(null); // State to track the ID of the blog to delete
+
+  const handleDelete = (blogId) => {
+    setBlogIdToDelete(blogId); // Set the ID of the blog to delete
+    setIsDialogOpen(true); // Open the dialog when the delete button is clicked
+  };
+
+  const handleConfirmDelete = () => {
+    // Code to handle the deletion logic for the blog with blogIdToDelete
+    // Add your logic here to delete the blog with the given ID
+    setIsDialogOpen(false); // Close the dialog after deletion
+  };
+
+  const handleCancelDelete = () => {
+    setBlogIdToDelete(null); // Reset the ID of the blog to delete
+    setIsDialogOpen(false); // Close the dialog if the deletion is canceled
+  };
+
   const navigate = useNavigate();
 
   const onRemoveFavorite = (id) => {
@@ -226,10 +250,6 @@ export const MyBlogs = () => {
 
   const handleClick = (id) => {
     navigate(`/blog/${id}`);
-  };
-
-  const handleDelete = () => {
-    // Handle delete action
   };
 
   const handleEdit = () => {
@@ -288,12 +308,19 @@ export const MyBlogs = () => {
                   }}
                 >
                   <ButtonGroup>
-                    <IconButton onClick={handleDelete} aria-label="Delete">
-                      <DeleteIcon />
-                    </IconButton>
-                    <IconButton onClick={handleEdit} aria-label="Edit">
-                      <EditIcon />
-                    </IconButton>
+                    <Tooltip title="Delete">
+                      <IconButton
+                        onClick={() => handleDelete(blog?.id)}
+                        aria-label="Delete"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Edit">
+                      <IconButton onClick={handleEdit} aria-label="Edit">
+                        <EditIcon />
+                      </IconButton>
+                    </Tooltip>
                   </ButtonGroup>
                   <Button
                     onClick={() => handleClick(blog?.id)}
@@ -308,6 +335,21 @@ export const MyBlogs = () => {
           ))}
         </Grid>
       )}
+      <Dialog open={isDialogOpen} onClose={handleCancelDelete}>
+        <DialogTitle>Confirm Deletion</DialogTitle>
+        <DialogContent>
+          {/* Add your confirmation message or additional content here */}
+          Are you sure you want to delete the blog ?
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCancelDelete} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleConfirmDelete} color="primary" autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };

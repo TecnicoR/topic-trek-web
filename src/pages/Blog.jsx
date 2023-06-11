@@ -10,11 +10,13 @@ import {
   List,
   ListItem,
   Divider,
+  Button,
 } from "@mui/material";
 import { DateTime } from "luxon";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { HtmlParser } from "../components/html-parser/HtmlParser";
+import { FavoriteBorderOutlined, FavoriteSharp } from "@mui/icons-material";
 
 export const Blog = () => {
   const { id } = useParams();
@@ -248,12 +250,17 @@ export const Blog = () => {
         <Stack
           sx={{
             width: "100%",
-            alignItems: "flex-start",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexDirection: "row",
           }}
         >
           <IconButton sx={{ left: -15 }} onClick={handleGoBack}>
             <ArrowBackIcon fontSize="medium" />
           </IconButton>
+          <Button startIcon={<FavoriteBorderOutlined />}>
+            Add to favorites
+          </Button>
         </Stack>
         <Typography variant="h4" sx={{ marginBottom: 2 }}>
           {post?.title}
