@@ -18,6 +18,7 @@ import PostAddIcon from "@mui/icons-material/PostAdd";
 import { UserContext } from "../../context/UserContext";
 import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate } from "react-router-dom";
+import ToastService from "../toast/ToastService";
 
 const menuIconStyle = {
   color: "white",
@@ -56,6 +57,7 @@ export const Navbar = () => {
     setAnchorEl(false);
     localStorage.clear();
     setUser(null);
+    ToastService.error("Logged out done")
     navigate("/");
   };
 
