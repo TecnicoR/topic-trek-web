@@ -13,7 +13,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { RemoveCircle } from "@mui/icons-material";
 import { DateTime } from "luxon";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -223,6 +222,8 @@ export const MyBlogs = () => {
     },
   ]);
 
+  const navigate = useNavigate();
+
   const [isDialogOpen, setIsDialogOpen] = useState(false); // State to track the dialog visibility
   const [blogIdToDelete, setBlogIdToDelete] = useState(null); // State to track the ID of the blog to delete
 
@@ -242,8 +243,6 @@ export const MyBlogs = () => {
     setIsDialogOpen(false); // Close the dialog if the deletion is canceled
   };
 
-  const navigate = useNavigate();
-
   const onRemoveFavorite = (id) => {
     console.log("Blog to remove ", id);
   };
@@ -252,8 +251,8 @@ export const MyBlogs = () => {
     navigate(`/blog/${id}`);
   };
 
-  const handleEdit = () => {
-    // Handle edit action
+  const handleEdit = (id) => {
+    navigate(`/blog-edit/${id}`);
   };
 
   return (
@@ -317,7 +316,10 @@ export const MyBlogs = () => {
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Edit">
-                      <IconButton onClick={handleEdit} aria-label="Edit">
+                      <IconButton
+                        onClick={() => handleEdit(blog?.id)}
+                        aria-label="Edit"
+                      >
                         <EditIcon />
                       </IconButton>
                     </Tooltip>

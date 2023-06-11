@@ -124,7 +124,7 @@ export const Navbar = () => {
                 </IconButton>
               </Tooltip>
               <Tooltip title="Add new post">
-                <IconButton onClick={() => navigate("/add-post")}>
+                <IconButton onClick={() => navigate("/add-blog")}>
                   <PostAddIcon sx={menuIconStyle} />
                 </IconButton>
               </Tooltip>

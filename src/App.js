@@ -13,12 +13,13 @@ import { PageAnimation } from "./components/animation/PageAnimation";
 import { AnimatePresence } from "framer-motion";
 import { ProtectedRoute } from "./components/security/ProtectedRoute";
 import { NotFound } from "./pages/NotFound";
-import { AddPost } from "./pages/AddPost";
+import { AddBlog } from "./pages/AddBlog";
 import "react-quill/dist/quill.snow.css";
 import { Blog } from "./pages/Blog";
 import { Favorites } from "./pages/Favorites";
 import { MyProfile } from "./pages/MyProfile";
 import { apiHelper } from "./services/apiHelper";
+import { EditBlog } from "./pages/EditBlog";
 
 function App() {
   const [loader, setLoader] = useState(false);
@@ -82,11 +83,11 @@ function App() {
                   }
                 />
                 <Route
-                  path="/add-post"
+                  path="/add-blog"
                   element={
                     <ProtectedRoute>
                       <PageAnimation>
-                        <AddPost />
+                        <AddBlog />
                       </PageAnimation>
                     </ProtectedRoute>
                   }
@@ -99,6 +100,16 @@ function App() {
                       <Blog />
                     </PageAnimation>
                     // </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/blog-edit/:id"
+                  element={
+                    <ProtectedRoute>
+                      <PageAnimation>
+                        <EditBlog />
+                      </PageAnimation>
+                    </ProtectedRoute>
                   }
                 />
                 <Route

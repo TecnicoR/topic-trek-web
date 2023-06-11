@@ -42,7 +42,7 @@ export const Carousel = () => {
               <h5>Write your ideas here.</h5>
               <p>
                 Let people know about your thoughts{" "}
-                {user == null && (
+                {user == null ? (
                   <Button
                     sx={{
                       "&:active": {
@@ -53,6 +53,18 @@ export const Carousel = () => {
                     onClick={() => navigate("/sign-up")}
                   >
                     Signup For Free
+                  </Button>
+                ) : (
+                  <Button
+                    sx={{
+                      "&:active": {
+                        transform: "scale(95%)",
+                      },
+                    }}
+                    variant="contained"
+                    onClick={() => navigate("/add-blog")}
+                  >
+                    Post a Blog
                   </Button>
                 )}
               </p>

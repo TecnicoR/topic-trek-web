@@ -19,7 +19,7 @@ import "./styles/add-post.scss";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-export const AddPost = () => {
+export const AddBlog = () => {
   const [post, setPost] = useState({});
   const [dialogOpen, setDialogOpen] = useState(false);
   const [characterCount, setCharacterCount] = useState(0);

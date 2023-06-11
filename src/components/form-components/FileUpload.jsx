@@ -99,7 +99,7 @@ export const FileUpload = ({ post, setPost }) => {
         <DialogContent>
           <img
             src={selectedFile}
-            alt="Selected Image"
+            alt="Selected File"
             style={{ maxWidth: "100%" }}
           />
         </DialogContent>
