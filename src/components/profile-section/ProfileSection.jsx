@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Box, Button, IconButton, Input, InputAdornment, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Input,
+  InputAdornment,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { AccountCircle, Edit, Email, Save } from "@mui/icons-material";
 
 export const ProfileSection = () => {
@@ -27,7 +35,13 @@ export const ProfileSection = () => {
   };
 
   return (
-    <Grid container spacing={2} alignItems="center" justifyContent="center">
+    <Grid
+      container
+      spacing={2}
+      alignItems="center"
+      justifyContent="center"
+      sx={{ marginTop: "6px" }}
+    >
       <Grid item xs={12} sm={4} md={3} lg={2}>
         <Box display="flex" justifyContent="center">
           <img
@@ -69,7 +83,11 @@ export const ProfileSection = () => {
           )}
         </Box>
       </Grid>
-      <Grid item xs={12}>
+      <Grid
+        item
+        xs={12}
+        style={{ display: "flex", justifyContent: "flex-end" }}
+      >
         {isEditing ? (
           <Button variant="contained" endIcon={<Save />} onClick={handleSave}>
             Save
@@ -83,4 +101,3 @@ export const ProfileSection = () => {
     </Grid>
   );
 };
-

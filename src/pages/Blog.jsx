@@ -17,6 +17,8 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { HtmlParser } from "../components/html-parser/HtmlParser";
 import { FavoriteBorderOutlined, FavoriteSharp } from "@mui/icons-material";
+import { AddComment } from "../components/comments/AddComment";
+import CommentSection from "../components/comments/CommentSection";
 
 export const Blog = () => {
   const { id } = useParams();
@@ -236,6 +238,12 @@ export const Blog = () => {
     publicationDate: "2023-06-11T10:15:00",
   });
 
+  const [comment, setComment] = useState("");
+
+  const postComment = () => {
+    console.log("Commented", comment);
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -340,71 +348,6 @@ export const Blog = () => {
               </Box>
             </Paper>
           </Grid>
-
-          {/* <Grid item xs={4}>
-            <Paper
-              sx={{ border: "1px solid black", height: 500, overflow: "auto" }}
-            >
-              <Typography variant="h6" sx={{ px: 2, pt: 2 }}>
-                More Blogs by{" "}
-                <span
-                  style={{ backgroundColor: "#FFCC80", padding: "2px 4px" }}
-                >
-                  {post?.userName}
-                </span>
-              </Typography>
-              <Box sx={{ maxHeight: 450, overflow: "auto", px: 2 }}>
-                <List>
-                  {moreBlogs?.map((v, k) => {
-                    return (
-                      <ListItem
-                        disablePadding
-                        sx={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                          py: 1,
-                        }}
-                      >
-                        <img
-                          src={v?.image}
-                          alt=""
-                          style={{
-                            width: 100,
-                            height: 80,
-                            objectFit: "cover",
-                            marginRight: 8,
-                          }}
-                        />
-                        <Box>
-                          <Typography variant="body2">{v?.title}</Typography>
-                          <Box
-                            sx={{ display: "flex", flexDirection: "column" }}
-                          >
-                            <Typography
-                              variant="caption"
-                              color="textSecondary"
-                              sx={{ opacity: 0.7 }}
-                            >
-                              {DateTime.fromISO(
-                                v?.publicationDate
-                              ).toLocaleString(DateTime.DATETIME_MED)}
-                            </Typography>
-                          </Box>
-                        </Box>
-                      </ListItem>
-                    );
-                  })}
-                </List>
-              </Box>
-              <Box
-                sx={{
-                  position: "relative",
-                  boxShadow: "inset 0px 4px 4px -4px rgba(0, 0, 0, 0.5)",
-                }}
-              ></Box>
-            </Paper>
-          </Grid> */}
         </Grid>
         <Typography variant="body1" sx={{ marginBottom: 2 }}>
           <HtmlParser htmlContent={post?.content} />
@@ -425,6 +368,41 @@ export const Blog = () => {
           )}
         </Typography>
       </Paper>
+      <AddComment
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        onSubmit={postComment}
+      />
+      <CommentSection
+        comments={[
+          {
+            comment: "Great post! Very informative.",
+            userName: "John",
+            commentedDate: "2023-06-10",
+          },
+          {
+            comment: "I completely agree with your points.",
+            userName: "Emily",
+            commentedDate: "2023-06-09",
+          },
+          {
+            comment: "Thanks for sharing this valuable information.",
+            userName: "Alex",
+            commentedDate: "2023-06-08",
+          },
+          {
+            comment:
+              "Interesting perspective. I never thought about it that way.",
+            userName: "Sarah",
+            commentedDate: "2023-06-07",
+          },
+          {
+            comment: "This post has inspired me to take action. Thank you!",
+            userName: "Michael",
+            commentedDate: "2023-06-06",
+          },
+        ]}
+      />
     </Box>
   );
 };

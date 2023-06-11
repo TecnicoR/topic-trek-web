@@ -57,8 +57,9 @@ export const Navbar = () => {
     setAnchorEl(false);
     localStorage.clear();
     setUser(null);
-    ToastService.error("Logged out done")
+    ToastService.success("Thanks for visiting, keep blogging");
     navigate("/");
+    window.scrollTo(0, 0);
   };
 
   const handleMyProfileClick = () => {
