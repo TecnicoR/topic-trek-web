@@ -137,7 +137,7 @@ export const Navbar = () => {
                 >
                   <Avatar
                     // onError={handleImageError}
-                    src="j"
+                    src={user?.image}
                     alt={user?.name}
                     sx={{
                       width: 30,
