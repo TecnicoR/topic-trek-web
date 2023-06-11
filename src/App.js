@@ -1,10 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { Home } from "./pages/Home";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/footer/Footer";
+import { Loader } from "./components/loader/Loader";
 import { UserProvider } from "./context/UserContext";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
@@ -17,8 +18,34 @@ import "react-quill/dist/quill.snow.css";
 import { Blog } from "./pages/Blog";
 import { Favorites } from "./pages/Favorites";
 import { MyProfile } from "./pages/MyProfile";
+import { apiHelper } from "./services/apiHelper";
 
 function App() {
+  const [loader, setLoader] = useState(false);
+  useEffect(() => {
+    apiHelper.interceptors.request.use(
+      (config) => {
+        setLoader(true);
+        return Promise.resolve(config);
+      },
+      (err) => {
+        setLoader(false);
+        return Promise.reject(err);
+      }
+    );
+
+    apiHelper.interceptors.response.use(
+      (response) => {
+        setLoader(false);
+        return Promise.resolve(response);
+      },
+      (err) => {
+        setLoader(false);
+        return Promise.reject(err);
+      }
+    );
+  }, []);
+
   document.title = "Topic Trek - passport to infinite knowledge";
   return (
     <UserProvider>
@@ -27,6 +54,7 @@ function App() {
         <div className="center-main">
           <BrowserRouter>
             <Navbar />
+            {loader && <Loader />}
             <AnimatePresence mode="wait">
               <Routes>
                 <Route

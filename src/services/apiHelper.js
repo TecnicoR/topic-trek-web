@@ -1,4 +1,4 @@
-const { default: axios } = require("axios");
+import axios from "axios";
 
 export const apiHelper = axios.create({
   baseURL: process.env.REACT_APP_API_URL,

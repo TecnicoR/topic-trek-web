@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
-import { Backdrop, CircularProgress, Box } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Backdrop, CircularProgress, Box, Typography } from "@mui/material";
 
 const loaderStyle = {
   zIndex: 9999,
   color: "#fff",
+  display: "flex",
+  flexDirection: "column",
 };
 
 const overlayStyle = {
@@ -16,13 +18,27 @@ const overlayStyle = {
   zIndex: 9998,
 };
 
-const Loader = () => {
+export const Loader = () => {
+  const [message, setMessage] = useState("Loading...");
   useEffect(() => {
-    // Disable scrolling and user activity when the component mounts
+    const timer = setTimeout(() => {
+      setMessage("Might take a few seconds...");
+    }, 3000);
+
+    const timeout = setTimeout(() => {
+      setMessage(
+        "Taking longer than usual... Hold on while we try to complete the request."
+      );
+      const refreshTimer = setTimeout(() => {
+        window.location.reload(); // Refresh the window after 2 seconds
+      }, 2000);
+      return () => clearTimeout(refreshTimer);
+    }, 10000);
     document.body.style.overflow = "hidden";
     return () => {
-      // Enable scrolling and user activity when the component unmounts
       document.body.style.overflow = "auto";
+      clearTimeout(timer);
+      clearTimeout(timeout);
     };
   }, []);
 
@@ -31,9 +47,10 @@ const Loader = () => {
       <Box style={overlayStyle} />
       <Backdrop style={loaderStyle} open={true}>
         <CircularProgress color="inherit" />
+        <Typography variant="subtitle1" color="inherit">
+          {message}
+        </Typography>
       </Backdrop>
     </>
   );
 };
-
-export default Loader;
