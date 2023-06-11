@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Home } from "./pages/Home";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import { Navbar } from "./components/navbar/Navbar";
