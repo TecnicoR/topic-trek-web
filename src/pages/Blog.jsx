@@ -19,6 +19,7 @@ import { HtmlParser } from "../components/html-parser/HtmlParser";
 import { FavoriteBorderOutlined, FavoriteSharp } from "@mui/icons-material";
 import { AddComment } from "../components/comments/AddComment";
 import CommentSection from "../components/comments/CommentSection";
+import { CategoryChip } from "../components/categories/CategoryChip";
 
 export const Blog = () => {
   const { id } = useParams();
@@ -227,6 +228,37 @@ export const Blog = () => {
     },
   ]);
 
+  const [categories, setCategories] = useState([
+    {
+      id: 1,
+      name: "Technology",
+    },
+    {
+      id: 2,
+      name: "Travel",
+    },
+    {
+      id: 3,
+      name: "Food",
+    },
+    {
+      id: 4,
+      name: "Fashion",
+    },
+    {
+      id: 4,
+      name: "Fashion",
+    },
+    {
+      id: 4,
+      name: "Fashion",
+    },
+    {
+      id: 5,
+      name: "Sports",
+    },
+  ]);
+
   const [post, setPost] = useState({
     id: 1,
     title: "The Importance of Exercise",
@@ -367,6 +399,15 @@ export const Blog = () => {
             DateTime.DATETIME_MED
           )}
         </Typography>
+        <Divider
+          sx={{
+            width: "100%",
+            backgroundColor: "black",
+            height: "2px",
+            marginBlock: 1,
+          }}
+        />
+        <CategoryChip categories={categories} />
       </Paper>
       <AddComment
         value={comment}
