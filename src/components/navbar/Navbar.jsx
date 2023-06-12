@@ -44,13 +44,7 @@ export const Navbar = () => {
   };
 
   const handleLoginButtonClick = () => {
-    // navigate("/login");
-    setUser({
-      id: "1",
-      name: "Rabinarayan Patra",
-      image:
-        "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
-    });
+    navigate("/login");
   };
 
   const handleLogout = () => {

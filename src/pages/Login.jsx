@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Avatar,
   Container,
@@ -13,13 +13,19 @@ import * as Yup from "yup";
 import LoginIcon from "@mui/icons-material/Login";
 import { TextInput } from "../components/form-components/TextInput";
 import { FormButton } from "../components/form-components/FormButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { doLogin, getMe } from "../services/userService";
+import { UserContext } from "../context/UserContext";
+import ToastService from "../components/toast/ToastService";
 
 export const Login = () => {
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const initialValue = {
     email: "",
@@ -41,7 +47,23 @@ export const Login = () => {
   });
 
   const handleSubmit = (values) => {
-    console.log("Login => ", values);
+    doLogin(values)
+      .then((res) => {
+        localStorage.setItem("accessToken", res?.accessToken);
+        localStorage.setItem("refreshToken", res?.refreshToken);
+        getMe()
+          .then((res) => {
+            setUser(res);
+            navigate("/");
+            ToastService.success(`Welcome back! ${res?.name}`);
+          })
+          .catch((err) => {
+            ToastService.error(err?.response?.data?.message);
+          });
+      })
+      .catch((err) => {
+        ToastService.error(err?.response?.data?.message);
+      });
   };
 
   return (

@@ -19,6 +19,8 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { doSignup } from "../services/userService";
+import ToastService from "../components/toast/ToastService";
 
 export const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -44,7 +46,15 @@ export const Signup = () => {
   });
 
   const handleSubmit = (values) => {
-    console.log("Signup => ", values);
+    doSignup(values)
+      .then((res) => {
+        ToastService.success(
+          "Account created, activate your account by verifying your mail, check mail for more details"
+        );
+      })
+      .catch((err) => {
+        ToastService.error(err?.response?.data?.message);
+      });
   };
 
   return (
@@ -110,30 +120,34 @@ export const Signup = () => {
                       name="email"
                       type="text"
                     />
-                     <TextInput
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <PasswordIcon />
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() => setShowPassword((show) => !show)}
-                            onMouseDown={(e) => e.preventDefault()}
-                            edge="end"
-                          >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    label="Password"
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                  />
+                    <TextInput
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <PasswordIcon />
+                          </InputAdornment>
+                        ),
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              aria-label="toggle password visibility"
+                              onClick={() => setShowPassword((show) => !show)}
+                              onMouseDown={(e) => e.preventDefault()}
+                              edge="end"
+                            >
+                              {showPassword ? (
+                                <VisibilityOff />
+                              ) : (
+                                <Visibility />
+                              )}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                      label="Password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                    />
                     <FormButton variant="contained" endIcon={<LoginIcon />}>
                       Create account
                     </FormButton>
