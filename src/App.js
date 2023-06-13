@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Home } from "./pages/Home";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import { Navbar } from "./components/navbar/Navbar";
 import { Footer } from "./components/footer/Footer";
 import { Loader } from "./components/loader/Loader";
-import { UserProvider } from "./context/UserContext";
+import { UserContext } from "./context/UserContext";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { PageAnimation } from "./components/animation/PageAnimation";
@@ -20,10 +20,19 @@ import { Favorites } from "./pages/Favorites";
 import { MyProfile } from "./pages/MyProfile";
 import { apiHelper } from "./services/apiHelper";
 import { EditBlog } from "./pages/EditBlog";
+import { PublicRoute } from "./components/security/PublicRoute";
+import { getMe } from "./services/userService";
 
 function App() {
   const [loader, setLoader] = useState(false);
+  const { setUser } = useContext(UserContext);
+
   useEffect(() => {
+    if (localStorage.getItem("accessToken") != null) {
+      getMe().then((res) => {
+        setUser(res);
+      });
+    }
     apiHelper.interceptors.request.use(
       (config) => {
         setLoader(true);
@@ -45,109 +54,111 @@ function App() {
         return Promise.reject(err);
       }
     );
-  }, []);
+  }, [setUser]);
 
   document.title = "Topic Trek - passport to infinite knowledge";
   return (
-    <UserProvider>
-      <div className="App">
-        <div className="left-side"></div>
-        <div className="center-main">
-          <BrowserRouter>
-            <Navbar />
-            {loader && <Loader />}
-            <AnimatePresence mode="wait">
-              <Routes>
-                <Route
-                  index
-                  element={
-                    <PageAnimation>
-                      <Home />
-                    </PageAnimation>
-                  }
-                />
-                <Route
-                  path="/login"
-                  element={
+    <div className="App">
+      <div className="left-side"></div>
+      <div className="center-main">
+        <BrowserRouter>
+          <Navbar />
+          {loader && <Loader />}
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route
+                index
+                element={
+                  <PageAnimation>
+                    <Home />
+                  </PageAnimation>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
                     <PageAnimation>
                       <Login />
                     </PageAnimation>
-                  }
-                />
-                <Route
-                  path="/sign-up"
-                  element={
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/sign-up"
+                element={
+                  <PublicRoute>
                     <PageAnimation>
                       <Signup />
                     </PageAnimation>
-                  }
-                />
-                <Route
-                  path="/add-blog"
-                  element={
-                    <ProtectedRoute>
-                      <PageAnimation>
-                        <AddBlog />
-                      </PageAnimation>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/blog/:id"
-                  element={
-                    // <ProtectedRoute>
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/add-blog"
+                element={
+                  <ProtectedRoute>
                     <PageAnimation>
-                      <Blog />
+                      <AddBlog />
                     </PageAnimation>
-                    // </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/blog-edit/:id"
-                  element={
-                    <ProtectedRoute>
-                      <PageAnimation>
-                        <EditBlog />
-                      </PageAnimation>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/favorites"
-                  element={
-                    <ProtectedRoute>
-                      <PageAnimation>
-                        <Favorites />
-                      </PageAnimation>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <PageAnimation>
-                        <MyProfile />
-                      </PageAnimation>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="*"
-                  element={
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/blog/:id"
+                element={
+                  // <ProtectedRoute>
+                  <PageAnimation>
+                    <Blog />
+                  </PageAnimation>
+                  // </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/blog-edit/:id"
+                element={
+                  <ProtectedRoute>
                     <PageAnimation>
-                      <NotFound />
+                      <EditBlog />
                     </PageAnimation>
-                  }
-                />
-              </Routes>
-            </AnimatePresence>
-            <Footer />
-          </BrowserRouter>
-        </div>
-        <div className="right-side"></div>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/favorites"
+                element={
+                  <ProtectedRoute>
+                    <PageAnimation>
+                      <Favorites />
+                    </PageAnimation>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <PageAnimation>
+                      <MyProfile />
+                    </PageAnimation>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <PageAnimation>
+                    <NotFound />
+                  </PageAnimation>
+                }
+              />
+            </Routes>
+          </AnimatePresence>
+          <Footer />
+        </BrowserRouter>
       </div>
-    </UserProvider>
+      <div className="right-side"></div>
+    </div>
 
     // <UserProvider>
     //   <motion.div
