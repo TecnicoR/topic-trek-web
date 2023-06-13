@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -9,13 +9,21 @@ import {
   Typography,
 } from "@mui/material";
 import { AccountCircle, Edit, Email, Save } from "@mui/icons-material";
+import { getMe } from "../../services/userService";
+import ToastService from "../toast/ToastService";
 
 export const ProfileSection = () => {
-  const [profile, setProfile] = useState({
-    name: "John Doe",
-    email: "johndoe@example.com",
-  });
+  const [profile, setProfile] = useState();
   const [isEditing, setIsEditing] = useState(false);
+  useEffect(() => {
+    getMe()
+      .then((res) => {
+        setProfile(res);
+      })
+      .catch((err) => {
+        ToastService.error(err?.response?.data?.message);
+      });
+  }, []);
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -56,7 +64,7 @@ export const ProfileSection = () => {
           {isEditing ? (
             <Input
               name="name"
-              value={profile.name}
+              value={profile?.name}
               onChange={handleChange}
               startAdornment={
                 <InputAdornment position="start">
@@ -65,12 +73,12 @@ export const ProfileSection = () => {
               }
             />
           ) : (
-            <Typography variant="h6">{profile.name}</Typography>
+            <Typography variant="h6">{profile?.name}</Typography>
           )}
           {isEditing ? (
             <Input
               name="email"
-              value={profile.email}
+              value={profile?.email}
               onChange={handleChange}
               startAdornment={
                 <InputAdornment position="start">
@@ -79,7 +87,7 @@ export const ProfileSection = () => {
               }
             />
           ) : (
-            <Typography variant="body1">{profile.email}</Typography>
+            <Typography variant="body1">{profile?.email}</Typography>
           )}
         </Box>
       </Grid>

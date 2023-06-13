@@ -1,88 +1,39 @@
-import { IconButton, Stack, Typography } from "@mui/material";
-import React, { useRef, useState } from "react";
+import { Stack, Typography } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
 import { Category } from "../categories/Category";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+// import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { getCategories } from "../../services/categoryService";
+import ToastService from "../toast/ToastService";
 
 export const TopCategories = () => {
-  const [categories, setCategories] = useState([
-    {
-      id: 123,
-      name: "Technology",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9_FwDMeSuH32VFOFV2Tp_Ql8LENG4FBb71S2DVPik&s",
-    },
-    {
-      id: 456,
-      name: "Travel",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToYb3BH2ls7LpxRIWdw__R2xBherSe0mMcr3PHIgqw&s",
-    },
-    {
-      id: 789,
-      name: "Fashion",
-      image:
-        "https://images.unsplash.com/photo-1646343253545-9171464ce425?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 234,
-      name: "Food",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9_FwDMeSuH32VFOFV2Tp_Ql8LENG4FBb71S2DVPik&s",
-    },
-    {
-      id: 567,
-      name: "Sports",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToYb3BH2ls7LpxRIWdw__R2xBherSe0mMcr3PHIgqw&s",
-    },
-    {
-      id: 890,
-      name: "Health",
-      image:
-        "https://images.unsplash.com/photo-1646343253545-9171464ce425?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 345,
-      name: "Music",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9_FwDMeSuH32VFOFV2Tp_Ql8LENG4FBb71S2DVPik&s",
-    },
-    {
-      id: 678,
-      name: "Movies",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToYb3BH2ls7LpxRIWdw__R2xBherSe0mMcr3PHIgqw&s",
-    },
-    {
-      id: 901,
-      name: "Books",
-      image:
-        "https://images.unsplash.com/photo-1646343253545-9171464ce425?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-    },
-    {
-      id: 123,
-      name: "Gaming",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9_FwDMeSuH32VFOFV2Tp_Ql8LENG4FBb71S2DVPik&s",
-    },
-  ]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategories()
+      .then((res) => {
+        setCategories(res);
+      })
+      .catch((err) => {
+        ToastService.error("Error while getting top categories, please refresh the page");
+      });
+  }, []);
 
   const scrollContainerRef = useRef(null);
 
-  const handleScrollLeft = () => {
-    scrollContainerRef.current.scrollBy({
-      left: -200,
-      behavior: "smooth",
-    });
-  };
+  // const handleScrollLeft = () => {
+  //   scrollContainerRef.current.scrollBy({
+  //     left: -200,
+  //     behavior: "smooth",
+  //   });
+  // };
 
-  const handleScrollRight = () => {
-    scrollContainerRef.current.scrollBy({
-      left: 200,
-      behavior: "smooth",
-    });
-  };
+  // const handleScrollRight = () => {
+  //   scrollContainerRef.current.scrollBy({
+  //     left: 200,
+  //     behavior: "smooth",
+  //   });
+  // };
 
   return (
     <Stack

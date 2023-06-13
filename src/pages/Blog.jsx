@@ -16,15 +16,18 @@ import { DateTime } from "luxon";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { HtmlParser } from "../components/html-parser/HtmlParser";
-import { FavoriteBorderOutlined, FavoriteSharp } from "@mui/icons-material";
+import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { AddComment } from "../components/comments/AddComment";
 import CommentSection from "../components/comments/CommentSection";
 import { CategoryChip } from "../components/categories/CategoryChip";
+import { getBlogById } from "../services/blogService";
+import ToastService from "../components/toast/ToastService";
+import { addToFav, removeFromFav } from "../services/favouriteService";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const Blog = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [moreBlogs, setMoreBlogs] = useState([
     {
       id: 1,
@@ -228,50 +231,46 @@ export const Blog = () => {
     },
   ]);
 
-  const [categories, setCategories] = useState([
-    {
-      id: 1,
-      name: "Technology",
-    },
-    {
-      id: 2,
-      name: "Travel",
-    },
-    {
-      id: 3,
-      name: "Food",
-    },
-    {
-      id: 4,
-      name: "Fashion",
-    },
-    {
-      id: 4,
-      name: "Fashion",
-    },
-    {
-      id: 4,
-      name: "Fashion",
-    },
-    {
-      id: 5,
-      name: "Sports",
-    },
-  ]);
-
-  const [post, setPost] = useState({
-    id: 1,
-    title: "The Importance of Exercise",
-    content:
-      "<h2>Heading</h2><p>This is a sample blog post about the importance of exercise.</p>",
-    image:
-      "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=465&q=80",
-    userName: "John Doe",
-    publicationDate: "2023-06-11T10:15:00",
-  });
+  const [post, setPost] = useState();
 
   const [comment, setComment] = useState("");
 
+  const fetchBlog = () => {
+    getBlogById(id)
+      .then((res) => {
+        setPost(res);
+      })
+      .catch((err) => {
+        ToastService.error(err?.response?.data?.message);
+      });
+  };
+
+  // const fetchMoreBlogByUser()
+  useEffect(() => {
+    fetchBlog();
+  }, []);
+
+  const handleAddToFav = () => {
+    addToFav(post?.id)
+      .then((res) => {
+        ToastService.success("Added to favorites");
+        fetchBlog();
+      })
+      .catch((err) => {
+        ToastService.error("Could not add to favorites");
+      });
+  };
+
+  const handleRemoveFromFav = () => {
+    removeFromFav(post?.id)
+      .then((res) => {
+        ToastService.success("Removed from favorites");
+        fetchBlog();
+      })
+      .catch((err) => {
+        ToastService.error("Could not add to favorites");
+      });
+  };
   const postComment = () => {
     console.log("Commented", comment);
   };
@@ -298,9 +297,18 @@ export const Blog = () => {
           <IconButton sx={{ left: -15 }} onClick={handleGoBack}>
             <ArrowBackIcon fontSize="medium" />
           </IconButton>
-          <Button startIcon={<FavoriteBorderOutlined />}>
-            Add to favorites
-          </Button>
+          {post?.isFavorite ? (
+            <Button onClick={handleRemoveFromFav} startIcon={<FavoriteIcon />}>
+              Remove from favorites
+            </Button>
+          ) : (
+            <Button
+              onClick={handleAddToFav}
+              startIcon={<FavoriteBorderOutlined />}
+            >
+              Add to favorites
+            </Button>
+          )}
         </Stack>
         <Typography variant="h4" sx={{ marginBottom: 2 }}>
           {post?.title}
@@ -407,7 +415,7 @@ export const Blog = () => {
             marginBlock: 1,
           }}
         />
-        <CategoryChip categories={categories} />
+        <CategoryChip categories={post?.categories} />
       </Paper>
       <AddComment
         value={comment}

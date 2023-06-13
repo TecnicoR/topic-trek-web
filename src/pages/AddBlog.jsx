@@ -11,19 +11,41 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import { FileUpload } from "../components/form-components/FileUpload";
-import { PostAddOutlined } from "@mui/icons-material";
+import { PostAddOutlined, YouTube } from "@mui/icons-material";
 import "./styles/add-post.scss";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { createBlog } from "../services/blogService";
+import ToastService from "../components/toast/ToastService";
+import { useNavigate } from "react-router-dom";
+import { getCategories } from "../services/categoryService";
 
 export const AddBlog = () => {
   const [post, setPost] = useState({});
   const [dialogOpen, setDialogOpen] = useState(false);
   const [characterCount, setCharacterCount] = useState(0);
+  const [options, setOptions] = useState([]);
+  const [fileErrorMessage, setFileErrorMessage] = useState("");
   const MAX_CHARACTER_COUNT = 1500;
+
+  const navigate = useNavigate();
+
+  const fetchCategories = () => {
+    getCategories()
+      .then((res) => {
+        setOptions(res);
+      })
+      .catch((err) => {
+        ToastService.error(err?.response?.data?.message);
+      });
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const validationSchema = yup.object({
     title: yup.string().required("Title is required"),
@@ -48,7 +70,11 @@ export const AddBlog = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       setPost(values);
-      setDialogOpen(true);
+      if (post?.image == null || post?.image === "") {
+        setFileErrorMessage("Image is required");
+      } else {
+        setDialogOpen(true);
+      }
     },
   });
 
@@ -62,19 +88,23 @@ export const AddBlog = () => {
   };
 
   const handleConfirm = () => {
-    console.log("Post", post);
+    const temp = { ...post };
+    delete temp["categories"];
+    temp["categories"] = post?.categories?.map((v, k) => v?.id);
+    createBlog(temp)
+      .then((res) => {
+        ToastService.success("Blog posted");
+        navigate("/");
+      })
+      .catch((err) => {
+        ToastService.error(err?.response?.data?.message);
+      });
     setDialogOpen(false);
   };
 
   const handleCancel = () => {
     setDialogOpen(false);
   };
-
-  const options = [
-    { id: "option1", name: "Option 1" },
-    { id: "option2", name: "Option 2" },
-    { id: "option3", name: "Option 3" },
-  ];
 
   const modules = {
     toolbar: [
@@ -174,6 +204,9 @@ export const AddBlog = () => {
               />
             )}
           />
+          <Typography color="red" variant="subtitle1">
+            {fileErrorMessage}
+          </Typography>
           <FileUpload post={post} setPost={setPost} />
         </Box>
         <Box

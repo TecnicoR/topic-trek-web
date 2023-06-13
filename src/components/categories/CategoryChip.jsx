@@ -12,7 +12,7 @@ export const CategoryChip = ({ categories }) => {
         <Typography variant="subtitle1">Categories:</Typography>
       </Box>
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-        {categories.map((category) => (
+        {categories?.map((category) => (
           <Chip
             key={category.id}
             label={category.name}

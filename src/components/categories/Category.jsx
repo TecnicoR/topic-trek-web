@@ -20,7 +20,7 @@ export const Category = ({ category }) => {
       <Box
         sx={{
           width: "50px",
-          height: "70px",
+          height: "50px",
           overflow: "hidden",
           display: "flex",
           justifyContent: "center",
@@ -39,7 +39,7 @@ export const Category = ({ category }) => {
           }}
         />
       </Box>
-      <Typography textAlign="center" variant="h6" component="p">
+      <Typography textAlign="center" variant="body1" component="p">
         {category?.name}
       </Typography>
     </Box>
