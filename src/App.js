@@ -22,6 +22,7 @@ import { apiHelper } from "./services/apiHelper";
 import { EditBlog } from "./pages/EditBlog";
 import { PublicRoute } from "./components/security/PublicRoute";
 import { getMe } from "./services/userService";
+import { EmailVerificationMessage } from "./pages/EmailVerificationMessage";
 
 function App() {
   const [loader, setLoader] = useState(false);
@@ -122,6 +123,14 @@ function App() {
                       <EditBlog />
                     </PageAnimation>
                   </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/email-verification-message"
+                element={
+                  <PageAnimation>
+                    <EmailVerificationMessage />
+                  </PageAnimation>
                 }
               />
               <Route

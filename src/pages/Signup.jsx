@@ -13,7 +13,7 @@ import * as Yup from "yup";
 import LoginIcon from "@mui/icons-material/Login";
 import { TextInput } from "../components/form-components/TextInput";
 import { FormButton } from "../components/form-components/FormButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import EmailIcon from "@mui/icons-material/Email";
@@ -23,6 +23,7 @@ import { doSignup } from "../services/userService";
 import ToastService from "../components/toast/ToastService";
 
 export const Signup = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const initialValues = {
     name: "",
@@ -51,6 +52,7 @@ export const Signup = () => {
         ToastService.success(
           "Account created, activate your account by verifying your mail, check mail for more details"
         );
+        navigate("/email-verification-message");
       })
       .catch((err) => {
         ToastService.error(err?.response?.data?.message);
