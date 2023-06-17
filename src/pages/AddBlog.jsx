@@ -14,7 +14,7 @@ import {
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import { FileUpload } from "../components/form-components/FileUpload";
-import { PostAddOutlined, YouTube } from "@mui/icons-material";
+import { PostAddOutlined } from "@mui/icons-material";
 import "./styles/add-post.scss";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -22,6 +22,7 @@ import { createBlog } from "../services/blogService";
 import ToastService from "../components/toast/ToastService";
 import { useNavigate } from "react-router-dom";
 import { getCategories } from "../services/categoryService";
+import { uploadFileToGetURL } from "../services/fileService";
 
 export const AddBlog = () => {
   const [post, setPost] = useState({});
@@ -69,7 +70,7 @@ export const AddBlog = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      setPost(values);
+      setPost({ ...post, ...values });
       if (post?.image == null || post?.image === "") {
         setFileErrorMessage("Image is required");
       } else {
@@ -91,14 +92,22 @@ export const AddBlog = () => {
     const temp = { ...post };
     delete temp["categories"];
     temp["categories"] = post?.categories?.map((v, k) => v?.id);
-    createBlog(temp)
+    uploadFileToGetURL(temp?.image)
       .then((res) => {
-        ToastService.success("Blog posted");
-        navigate("/");
+        temp["image"] = res;
+        createBlog(temp)
+          .then((res) => {
+            ToastService.success("Blog posted");
+            navigate("/");
+          })
+          .catch((err) => {
+            ToastService.error(err?.response?.data?.message);
+          });
       })
       .catch((err) => {
         ToastService.error(err?.response?.data?.message);
       });
+
     setDialogOpen(false);
   };
 

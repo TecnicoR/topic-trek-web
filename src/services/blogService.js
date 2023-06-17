@@ -1,5 +1,3 @@
-// Below code is when getting data from actual server
-
 import { apiHelper } from "./apiHelper";
 
 export const getLatestBlogs = async () => {
