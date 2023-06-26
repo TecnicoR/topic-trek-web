@@ -19,7 +19,6 @@ import { Blog } from "./pages/Blog";
 import { Favorites } from "./pages/Favorites";
 import { MyProfile } from "./pages/MyProfile";
 import { apiHelper } from "./services/apiHelper";
-import { EditBlog } from "./pages/EditBlog";
 import { PublicRoute } from "./components/security/PublicRoute";
 import { getMe } from "./services/userService";
 import { EmailVerificationMessage } from "./pages/EmailVerificationMessage";
@@ -124,16 +123,6 @@ function App() {
                     <Blog />
                   </PageAnimation>
                   // </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/blog-edit/:id"
-                element={
-                  <ProtectedRoute>
-                    <PageAnimation>
-                      <EditBlog />
-                    </PageAnimation>
-                  </ProtectedRoute>
                 }
               />
               <Route

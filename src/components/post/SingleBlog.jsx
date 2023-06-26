@@ -1,9 +1,7 @@
 import { Button, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import { DateTime } from "luxon";
 import { useNavigate } from "react-router-dom";
-import { HtmlParser } from "../html-parser/HtmlParser";
 
 export const SingleBlog = ({ blog }) => {
   const navigate = useNavigate();
