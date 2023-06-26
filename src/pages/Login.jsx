@@ -146,7 +146,7 @@ export const Login = () => {
                   </FormButton>
                   <Stack direction={"row"} justifyContent={"space-between"}>
                     <Typography variant="body2">
-                      <Link>Forgot password?</Link>
+                      <Link to="/forgot-password">Forgot password?</Link>
                     </Typography>
                     <Typography variant="body2">
                       <Link to="/sign-up">Don't have an account? Sign Up</Link>

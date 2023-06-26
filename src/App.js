@@ -23,6 +23,7 @@ import { EditBlog } from "./pages/EditBlog";
 import { PublicRoute } from "./components/security/PublicRoute";
 import { getMe } from "./services/userService";
 import { EmailVerificationMessage } from "./pages/EmailVerificationMessage";
+import { ForgotPassword } from "./pages/ForgotPassword";
 
 function App() {
   const [loader, setLoader] = useState(false);
@@ -81,6 +82,16 @@ function App() {
                   <PublicRoute>
                     <PageAnimation>
                       <Login />
+                    </PageAnimation>
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/forgot-password"
+                element={
+                  <PublicRoute>
+                    <PageAnimation>
+                      <ForgotPassword />
                     </PageAnimation>
                   </PublicRoute>
                 }

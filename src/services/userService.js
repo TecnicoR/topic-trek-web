@@ -35,3 +35,12 @@ export const updateMe = async (data) => {
     return await Promise.reject(err);
   }
 };
+
+export const forgotPassword = async (data) => {
+  try {
+    const response = await apiHelper.post(`/users/forgot-password`, data);
+    return await Promise.resolve(response.data);
+  } catch (err) {
+    return await Promise.reject(err);
+  }
+};
