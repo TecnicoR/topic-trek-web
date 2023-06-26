@@ -15,7 +15,6 @@ import {
 import { DateTime } from "luxon";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { HtmlParser } from "../components/html-parser/HtmlParser";
 import { FavoriteBorderOutlined } from "@mui/icons-material";
 import { AddComment } from "../components/comments/AddComment";
 import CommentSection from "../components/comments/CommentSection";
@@ -25,6 +24,7 @@ import ToastService from "../components/toast/ToastService";
 import { addToFav, removeFromFav } from "../services/favouriteService";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { addComment, getAllCommentsByBlogId } from "../services/commentService";
+import ReactQuill from "react-quill";
 
 export const Blog = () => {
   const { id } = useParams();
@@ -216,7 +216,7 @@ export const Blog = () => {
           </Grid>
         </Grid>
         <Typography variant="body1" sx={{ marginBottom: 2 }}>
-          <HtmlParser htmlContent={post?.content} />
+          <ReactQuill value={post?.content} readOnly={true} theme={"bubble"} />
         </Typography>
         <Stack direction="row" alignItems="center">
           <PermIdentityIcon sx={{ marginRight: 1 }} />
