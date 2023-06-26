@@ -133,14 +133,14 @@ export const MyBlogs = () => {
                         <DeleteIcon />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip title="Edit">
+                    {/* <Tooltip title="Edit">
                       <IconButton
                         onClick={() => handleEdit(blog?.id)}
                         aria-label="Edit"
                       >
                         <EditIcon />
                       </IconButton>
-                    </Tooltip>
+                    </Tooltip> */}
                   </ButtonGroup>
                   <Button
                     onClick={() => handleClick(blog?.id)}

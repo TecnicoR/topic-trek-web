@@ -9,6 +9,7 @@ apiHelper.interceptors.request.use((requestOptions) => {
   const tempHeaders = { ...requestOptions?.headers };
   if (token != null) {
     tempHeaders["Authorization"] = `Bearer ${token}`;
+    tempHeaders["Access-Control-Allow-Origin"] = "Allow";
   }
   // This below header is for LocalTunnel, if using ( for development stage )
   // tempHeaders["Bypass-Tunnel-Reminder"] = "pass";

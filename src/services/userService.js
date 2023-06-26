@@ -26,3 +26,12 @@ export const getMe = async () => {
     return await Promise.reject(err);
   }
 };
+
+export const updateMe = async (data) => {
+  try {
+    const response = await apiHelper.patch(`/users`, data);
+    return await Promise.resolve(response.data);
+  } catch (err) {
+    return await Promise.reject(err);
+  }
+};

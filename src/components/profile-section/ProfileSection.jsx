@@ -8,13 +8,14 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { AccountCircle, Edit, Email, Save } from "@mui/icons-material";
-import { getMe } from "../../services/userService";
+import { AccountCircle, Edit, Save } from "@mui/icons-material";
+import { getMe, updateMe } from "../../services/userService";
 import ToastService from "../toast/ToastService";
 
 export const ProfileSection = () => {
   const [profile, setProfile] = useState();
   const [isEditing, setIsEditing] = useState(false);
+
   useEffect(() => {
     getMe()
       .then((res) => {
@@ -31,10 +32,21 @@ export const ProfileSection = () => {
 
   const handleSave = () => {
     setIsEditing(false);
-    // Perform update profile logic here
+    updateMe(profile)
+      .then((res) => {
+        ToastService.success("Profile updated");
+        getMe().then((res) => {
+          setProfile(res);
+        });
+      })
+      .catch((err) => {
+        ToastService.error(err?.response?.data?.message);
+      });
   };
 
   const handleChange = (event) => {
+    if (!isEditing) return; // Return early if not in editing mode
+
     const { name, value } = event.target;
     setProfile((prevProfile) => ({
       ...prevProfile,
@@ -75,20 +87,7 @@ export const ProfileSection = () => {
           ) : (
             <Typography variant="h6">{profile?.name}</Typography>
           )}
-          {isEditing ? (
-            <Input
-              name="email"
-              value={profile?.email}
-              onChange={handleChange}
-              startAdornment={
-                <InputAdornment position="start">
-                  <Email />
-                </InputAdornment>
-              }
-            />
-          ) : (
-            <Typography variant="body1">{profile?.email}</Typography>
-          )}
+          <Typography variant="body1">{profile?.email}</Typography>
         </Box>
       </Grid>
       <Grid

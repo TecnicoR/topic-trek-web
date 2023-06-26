@@ -1,11 +1,10 @@
 import DOMPurify from "dompurify";
 import React from "react";
+import ReactQuill from "react-quill";
 
 export const HtmlParser = ({ htmlContent }) => {
-  const sanitizedHtml = DOMPurify.sanitize(htmlContent);
+  // const sanitizedHtml = DOMPurify.sanitize(htmlContent);
   return (
-    <div
-      dangerouslySetInnerHTML={{ __html: sanitizedHtml }}
-    ></div>
+    <ReactQuill value={htmlContent} readOnly={true} theme={"bubble"} />
   );
 };
